@@ -62,7 +62,7 @@ public class SpellCheck {
             System.out.println(typo + " (" + typoTracker.get(typo) + ")");
         }
         System.out.println("\nTotal typos: " + totalTypos);
-        System.out.println("Thanks for using typo tracker.");
+        System.out.println("Thanks for using SpellCheck. Exiting...");
     }
 
     private static void scanFiles(File spellcheckFile, File dictionaryFile) {
