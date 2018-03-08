@@ -1,8 +1,10 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashSet;
-import java.util.LinkedHashMap;
+
+import java.util.Map;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 /**
  * The SpellCheck program takes in a dictionary document and a test file. It outputs
@@ -16,8 +18,9 @@ import java.util.Scanner;
  */
 public class SpellCheck {
     private static HashSet<String> dictionaryHashSet = new HashSet<>();
-    private static LinkedHashMap<String, Integer> typoTracker = new LinkedHashMap<>();
+    private static Map<String, Integer> typoTracker = new TreeMap<>();
     private static int totalTypos = 0;
+    private static int totalWords = 0;
 
     public static void main(String args[]) {
         System.out.println("Cody Potter");
@@ -61,7 +64,8 @@ public class SpellCheck {
         for (String typo : typoTracker.keySet()) {
             System.out.println(typo + " (" + typoTracker.get(typo) + ")");
         }
-        System.out.println("\nTotal typos: " + totalTypos);
+        System.out.println("\nTotal words: " + totalWords);
+        System.out.println("Total typos: " + totalTypos);
         System.out.println("Thanks for using SpellCheck. Exiting...");
     }
 
@@ -78,6 +82,7 @@ public class SpellCheck {
 
             System.out.println("Spell checking file, please wait (this could take a few seconds)...");
             while (spellcheckScanner.hasNext()) {
+                totalWords++;
                 String word = spellcheckScanner.next();
                 word = word.replaceAll("[^a-zA-Z]","-");
                 word = editForWeirdCharacters(word);
