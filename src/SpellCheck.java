@@ -82,7 +82,6 @@ public class SpellCheck {
 
             System.out.println("Spell checking file, please wait (this could take a few seconds)...");
             while (spellcheckScanner.hasNext()) {
-                totalWords++;
                 String word = spellcheckScanner.next();
                 word = word.replaceAll("[^a-zA-Z]","-");
                 word = editForWeirdCharacters(word);
@@ -108,6 +107,7 @@ public class SpellCheck {
     }
 
     private static void checkDictionaryAgainst(String word) {
+        totalWords++;
         String lowercaseWord = word.toLowerCase();
         if (!dictionaryHashSet.contains(lowercaseWord)) {
             totalTypos++;
